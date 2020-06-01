@@ -29,8 +29,12 @@ RUN apt install wget
 RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
   && DEBIAN_FRONTEND=noninteractive apt --yes install ./google-chrome-stable_current_amd64.deb
   
+# Enable Chrome to run with root user 
+sed -i 's/exec -a \"\$0\" \"\$HERE\/chrome\" \"\$\@\"/exec -a \"\$0\" \"\$HERE\/chrome\" \"\$\@\" --user-data-dir --test-type --no-sandbox/g' /opt/google/chrome/google-chrome
+  
 # Install Firefox
 RUN DEBIAN_FRONTEND=noninteractive apt --yes install firefox
+
 
 COPY token.sh /
 RUN chmod +x /token.sh
