@@ -41,3 +41,6 @@ RUN chmod +x /token.sh
 COPY entrypoint.sh /
 RUN chmod +x /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
+
+# Exposing port 4444
+EXPOSE 4444
